@@ -1,7 +1,7 @@
 {
   "Name": "Static Inventory",
   "Author": "dinotopea",
-  "Version": "1.0.0",
+  "Version": "1.0.1",
   "Description": "Keep your inventory static.",
   "UniqueID": "dinotopea.StaticInventory",
   "EntryDll": "StaticInventory.dll",
