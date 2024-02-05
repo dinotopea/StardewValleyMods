@@ -6,5 +6,5 @@
   "UniqueID": "dinotopea.StaticInventory",
   "EntryDll": "StaticInventory.dll",
   "MinimumApiVersion": "3.0.0",
-  "UpdateKeys": []
+  "UpdateKeys": [ "Nexus:20093" ]
 }
