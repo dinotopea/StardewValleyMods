@@ -1,9 +1,9 @@
 {
-  "Name": "StaticInventory",
-  "Author": "nrobinson12",
+  "Name": "Static Inventory",
+  "Author": "dinotopea",
   "Version": "1.0.0",
   "Description": "Keep your inventory static.",
-  "UniqueID": "nrobinson12.StaticInventory",
+  "UniqueID": "dinotopea.StaticInventory",
   "EntryDll": "StaticInventory.dll",
   "MinimumApiVersion": "3.0.0",
   "UpdateKeys": []
