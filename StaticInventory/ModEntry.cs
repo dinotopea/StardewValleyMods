@@ -65,9 +65,14 @@ namespace StaticInventory
 
         private void OnRendering(object sender, RenderingEventArgs e)
         {
-            if (Context.IsWorldReady && oldMenu != Game1.activeClickableMenu)
+            if (Context.IsWorldReady)
             {
-                staticInventory.OnMenuChange();
+                bool openingMenu = oldMenu == null && Game1.activeClickableMenu != null;
+                bool closingMenu = oldMenu != null && Game1.activeClickableMenu == null;
+                if (openingMenu || closingMenu)
+                {
+                    staticInventory.OnMenuChange();
+                }
             }
 
             oldMenu = Game1.activeClickableMenu;
