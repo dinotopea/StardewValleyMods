@@ -1,3 +1,3 @@
-# StaticInventory for Stardew Valley
+# Stardew Valley Mods
 
-Static Inventory is a Stardew Valley mod that does what it says. It makes your inventory static.
+All my Stardew Valley mods!
