@@ -1,12 +1,12 @@
 # Static Inventory Change Log
 
-## 1.0.2
+## 1.0.2 (February 7, 2024)
 
 ### Fixed
 
 * Eating food would duplicate that food to the first row (and delete whatever was there)
 
-## 1.0.1 (February 5 2024)
+## 1.0.1 (February 5, 2024)
 
 ### Fixed
 
