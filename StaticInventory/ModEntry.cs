@@ -1,12 +1,8 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using StardewModdingAPI;
+﻿using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
 using StardewValley.Menus;
-using StardewValley.Monsters;
-using System.Linq;
-using System;
+using System.Reflection;
 
 namespace StaticInventory
 {
@@ -67,12 +63,10 @@ namespace StaticInventory
         {
             if (Context.IsWorldReady)
             {
-                bool openingMenu = oldMenu == null && Game1.activeClickableMenu != null;
-                bool closingMenu = oldMenu != null && Game1.activeClickableMenu == null;
-                if (openingMenu || closingMenu)
-                {
-                    staticInventory.OnMenuChange();
-                }
+                bool openingMenu = oldMenu == null && IsMenuWithInventory(Game1.activeClickableMenu);
+                bool closingMenu = Game1.activeClickableMenu == null && IsMenuWithInventory(oldMenu);
+
+                if (openingMenu || closingMenu) staticInventory.OnMenuChange();
             }
 
             oldMenu = Game1.activeClickableMenu;
@@ -101,8 +95,7 @@ namespace StaticInventory
 
                     if (Game1.activeClickableMenu.readyToClose())
                     {
-                        Game1.exitActiveMenu();
-                        Game1.playSound("bigDeSelect");
+                        Game1.activeClickableMenu.exitThisMenu();
                     }
                 }));
             }
@@ -111,6 +104,24 @@ namespace StaticInventory
         private void SaveModData()
         {
             Helper.Data.WriteSaveData(modDataKey, staticInventory.GetModData());
+        }
+
+        private bool IsMenuWithInventory(IClickableMenu clickableMenu)
+        {
+            if (clickableMenu == null) return false;
+
+            // Check if menu is an MenuWithInventory
+            if (clickableMenu is GameMenu or MenuWithInventory) return true;
+
+            // Check if menu has an InventoryMenu property
+            PropertyInfo[] properties = clickableMenu.GetType().GetProperties();
+            for (int i = 0; i < properties.Length; i++)
+            {
+                if (properties[i].GetType() == typeof(InventoryMenu)) return true;
+            }
+
+            // Did not find inventory in menu
+            return false;
         }
     }
 }
